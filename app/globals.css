@@ -1,0 +1,498 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------------------------------------------------
+   Chrome autofill — global override for dark inputs (hero email, etc.)
+   Prevents yellow/black ugly box; force dark inset box-shadow + white text
+   ------------------------------------------------------------------------- */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+input:-internal-autofill-selected {
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.95) !important;
+  -webkit-box-shadow: 0 0 0 1000px #070707 inset !important;
+  box-shadow: 0 0 0 1000px #070707 inset !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  caret-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* -------------------------------------------------------------------------
+   Global page layout — unified container for header + all sections
+   ------------------------------------------------------------------------- */
+@layer components {
+  .page-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10;
+  }
+  .header-edge-container {
+    @apply w-full px-4 sm:px-6 lg:px-10;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Motion tokens (cinematic micro-motion)
+   ------------------------------------------------------------------------- */
+:root {
+  --motion-duration-fast: 0.25s;
+  --motion-duration: 0.5s;
+  --motion-duration-slow: 0.7s;
+  --motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* -------------------------------------------------------------------------
+   Reveal (scroll-triggered fade) — initial state
+   ------------------------------------------------------------------------- */
+.reveal-fadeUp,
+.reveal-fadeIn,
+.reveal-fadeDown {
+  opacity: 0;
+  transition:
+    opacity var(--motion-duration-slow) var(--motion-ease-out),
+    transform var(--motion-duration-slow) var(--motion-ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal-fadeUp { transform: translateY(14px); }
+.reveal-fadeIn { transform: none; }
+.reveal-fadeDown { transform: translateY(-10px); }
+
+.reveal-fadeUp.is-visible,
+.reveal-fadeIn.is-visible,
+.reveal-fadeDown.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion: no transform, simple fade only */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-fadeUp,
+  .reveal-fadeIn,
+  .reveal-fadeDown {
+    transform: none;
+    transition: opacity var(--motion-duration) var(--motion-ease);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Cinematic button hover
+   ------------------------------------------------------------------------- */
+.btn-cinematic {
+  transition:
+    transform var(--motion-duration-fast) var(--motion-ease),
+    box-shadow var(--motion-duration-fast) var(--motion-ease),
+    filter var(--motion-duration-fast) var(--motion-ease);
+}
+.btn-cinematic:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.15);
+  filter: brightness(1.05);
+}
+.btn-cinematic:active:not(:disabled) {
+  transform: scale(0.99);
+}
+.btn-cinematic:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-cinematic:hover:not(:disabled),
+  .btn-cinematic:active:not(:disabled) {
+    transform: none;
+  }
+  .btn-cinematic {
+    transition: box-shadow var(--motion-duration-fast) var(--motion-ease),
+      filter var(--motion-duration-fast) var(--motion-ease);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Join early access (header white button) — visible border, subtle glow
+   ------------------------------------------------------------------------- */
+.btn-early-access {
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  transition:
+    transform 280ms ease,
+    border-color 280ms ease,
+    box-shadow 280ms ease;
+  animation: btnEarlyAccessGlow 7s ease-in-out infinite;
+}
+
+@keyframes btnEarlyAccessGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.03);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.btn-early-access:hover:not(:disabled) {
+  transform: scale(1.01);
+  border-color: rgba(0, 0, 0, 0.25) !important;
+  animation-play-state: paused;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-early-access {
+    animation: none;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.03);
+  }
+  .btn-early-access:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Hero CTA button — cinematic premium (id+class selector beats overrides)
+   White button on dark: visible light border + soft glow + breathing
+   ------------------------------------------------------------------------- */
+#hero-join-cta.hero-cta-premium {
+  position: relative !important;
+  background: #ffffff !important;
+  color: #0b0b0b !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius: 12px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 14px 34px rgba(0, 0, 0, 0.32),
+    0 0 20px rgba(255, 255, 255, 0.06) !important;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease !important;
+  animation: heroCtaBreath 6s ease-in-out infinite !important;
+}
+
+@keyframes heroCtaBreath {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 14px 34px rgba(0, 0, 0, 0.32),
+      0 0 18px rgba(255, 255, 255, 0.04);
+  }
+  50% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.85),
+      0 14px 36px rgba(0, 0, 0, 0.34),
+      0 0 24px rgba(255, 255, 255, 0.1);
+  }
+}
+
+#hero-join-cta.hero-cta-premium:hover:not(:disabled) {
+  transform: translateY(-1px) scale(1.015) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 20px 48px rgba(0, 0, 0, 0.4),
+    0 0 28px rgba(255, 255, 255, 0.12) !important;
+}
+
+#hero-join-cta.hero-cta-premium:active:not(:disabled) {
+  transform: translateY(0) scale(0.995) !important;
+}
+
+#hero-join-cta.hero-cta-premium:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.4) !important;
+  outline-offset: 2px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #hero-join-cta.hero-cta-premium {
+    animation: none !important;
+  }
+  #hero-join-cta.hero-cta-premium:hover:not(:disabled),
+  #hero-join-cta.hero-cta-premium:active:not(:disabled) {
+    transform: none !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Hero email input — dark/transparent, no white flash (typing/autofill/focus)
+   ------------------------------------------------------------------------- */
+#hero-email,
+#hero-email:focus,
+#hero-email:active,
+#hero-email:hover {
+  background-color: transparent !important;
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.95) !important;
+  caret-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+#hero-email::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Chrome autofill: box-shadow inset overrides default yellow/black background;
+   matches hero gradient (#070707), prevents flash, keeps text white */
+#hero-email:-webkit-autofill,
+#hero-email:-webkit-autofill:hover,
+#hero-email:-webkit-autofill:focus,
+#hero-email:-webkit-autofill:active {
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.95) !important;
+  -webkit-box-shadow: 0 0 0 1000px #070707 inset !important;
+  box-shadow: 0 0 0 1000px #070707 inset !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  caret-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Wrapper: no background so autofill/focus stays consistent (no extra black block) */
+.hero-email-wrap {
+  background: transparent !important;
+}
+
+.hero-email-underline {
+  height: 1px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.22);
+  transition:
+    background 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.hero-email-wrap:focus-within .hero-email-underline {
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.08);
+}
+
+/* -------------------------------------------------------------------------
+   .ctaPremium — primary CTA button (Join waitlist), definitive override
+   ------------------------------------------------------------------------- */
+@keyframes ctaBreath {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.08));
+  }
+}
+
+.ctaPremium {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid rgba(0, 0, 0, 0.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 10px 30px rgba(0, 0, 0, 0.18) !important;
+  transition:
+    transform 240ms ease,
+    box-shadow 240ms ease,
+    border-color 240ms ease,
+    filter 240ms ease !important;
+  will-change: transform, box-shadow;
+  animation: ctaBreath 7s ease-in-out infinite !important;
+}
+
+.ctaPremium:hover:not(:disabled) {
+  transform: translateY(-1px) scale(1.012) !important;
+  border-color: rgba(0, 0, 0, 0.26) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 14px 38px rgba(0, 0, 0, 0.22) !important;
+}
+
+.ctaPremium:active:not(:disabled) {
+  transform: translateY(0) scale(0.995) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 8px 22px rgba(0, 0, 0, 0.16) !important;
+}
+
+.ctaPremium:focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 10px 30px rgba(0, 0, 0, 0.18) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctaPremium {
+    animation: none !important;
+  }
+  .ctaPremium:hover:not(:disabled),
+  .ctaPremium:active:not(:disabled) {
+    transform: none !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Profile form exit — animate out before unmount
+   ------------------------------------------------------------------------- */
+.profile-form-exit {
+  animation: profileFormExit 180ms ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes profileFormExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Profile complete confirmation — animate in
+   ------------------------------------------------------------------------- */
+.profile-complete-enter {
+  animation: profileCompleteEnter 220ms ease-out forwards;
+}
+
+@keyframes profileCompleteEnter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-form-exit {
+    animation: none;
+    opacity: 0;
+  }
+  .profile-complete-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Workflow keywords — subtle cinematic hover
+   ------------------------------------------------------------------------- */
+.workflow-keyword {
+  display: inline-block;
+  transition:
+    color 250ms ease,
+    text-shadow 250ms ease,
+    transform 250ms ease;
+}
+.workflow-keyword:hover,
+.workflow-keyword:focus-visible {
+  color: rgb(212 212 212);
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+.workflow-keyword:focus-visible {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workflow-keyword:hover,
+  .workflow-keyword:focus-visible {
+    transform: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Filmry glass — subtle glassmorphism for containers (tech-cinematic)
+   ------------------------------------------------------------------------- */
+.filmry-glass {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 18px 50px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .filmry-glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Cinematic divider — reference design (OS section), all dividers match
+   Width 120px, breathing glow, clearly visible but subtle
+   ------------------------------------------------------------------------- */
+.cine-divider {
+  width: 120px;
+  height: 1px;
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  box-shadow: 0 0 12px rgba(255,255,255,0.12), 0 0 24px rgba(255,255,255,0.06);
+  animation: cineDividerGlow 5s ease-in-out infinite;
+}
+
+@keyframes cineDividerGlow {
+  0%, 100% { opacity: 0.65; }
+  50%      { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cine-divider {
+    animation: none;
+    opacity: 0.82;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Credibility block — layout only (visuals from .cine-divider)
+   ------------------------------------------------------------------------- */
+.credibility-block-divider {
+  /* visual styling from .cine-divider */
+}
+
+/* -------------------------------------------------------------------------
+   "And many more behind the camera." — layout only (visuals from .cine-divider)
+   ------------------------------------------------------------------------- */
+.and-more-divider {
+  margin-top: 2.5rem; /* matches mt-10 used in CinematicSection and other divider+heading combos */
+}
+
+.and-more-cinematic {
+  /* no hover effect — text stays unchanged on hover */
+}
+
+/* -------------------------------------------------------------------------
+   Cinematic dark email input (no white flash, autofill stays dark)
+   ------------------------------------------------------------------------- */
+.input-cinematic-dark {
+  background-color: transparent !important;
+  color: rgb(255 255 255) !important;
+}
+.input-cinematic-dark::placeholder {
+  color: rgb(107 114 128);
+}
+.input-cinematic-dark:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+.input-cinematic-dark:-webkit-autofill,
+.input-cinematic-dark:-webkit-autofill:hover,
+.input-cinematic-dark:-webkit-autofill:focus,
+.input-cinematic-dark:-webkit-autofill:active {
+  -webkit-text-fill-color: rgb(255 255 255) !important;
+  -webkit-box-shadow: 0 0 0 1000px #0a0a0a inset !important;
+  box-shadow: 0 0 0 1000px #0a0a0a inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
