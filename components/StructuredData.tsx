@@ -8,7 +8,14 @@ const jsonLd = {
       name: 'Filmry',
       url: 'https://filmry.io',
       logo: 'https://filmry.io/logo/filmry-logo-white.png',
-      sameAs: [],
+      sameAs: [
+        'https://x.com/filmryio',
+        'https://instagram.com/filmryio',
+        'https://www.linkedin.com/company/filmryio',
+        'https://www.facebook.com/filmryio',
+        'https://www.tiktok.com/@filmryio',
+        'https://youtube.com/@filmryio',
+      ],
     },
     {
       '@type': 'WebSite',
