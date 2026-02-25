@@ -1,24 +1,30 @@
-import type { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date()
-
   return [
     {
-      url: 'https://filmry.io/',
-      lastModified,
+      url: 'https://filmry.io',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 1,
     },
     {
       url: 'https://filmry.io/privacy',
-      lastModified,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.5,
     },
     {
       url: 'https://filmry.io/terms',
-      lastModified,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.5,
     },
     {
       url: 'https://filmry.io/contact',
-      lastModified,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.5,
     },
   ]
 }
