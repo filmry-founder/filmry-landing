@@ -5,7 +5,7 @@ import AnalyticsProvider from '@/components/AnalyticsProvider'
 export const metadata: Metadata = {
   title: 'Filmry — Make films. Not chaos.',
   description:
-    'Filmry is the end-to-end platform for modern film production — from script to delivery.',
+    'The end-to-end operating system for film production — from script to delivery. Early access now open.',
   metadataBase: new URL('https://filmry.io'),
   alternates: {
     canonical: '/',
@@ -15,25 +15,27 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: 'Filmry',
+    title: 'Filmry — Make films. Not chaos.',
     description:
-      'End-to-end infrastructure for modern film production.',
+      'The end-to-end operating system for film production — from script to delivery.',
     url: 'https://filmry.io',
     siteName: 'Filmry',
     images: [
       {
-        url: '/icon.png',
-        width: 512,
-        height: 512,
+        url: '/og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Filmry — Make films. Not chaos.',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Filmry',
-    description: 'Make films. Not chaos.',
-    images: ['/icon.png'],
+    title: 'Filmry — Make films. Not chaos.',
+    description:
+      'The end-to-end operating system for film production — from script to delivery.',
+    images: ['/og.jpg'],
   },
 }
 
