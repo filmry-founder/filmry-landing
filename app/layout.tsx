@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import AnalyticsProvider from '@/components/AnalyticsProvider'
-import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://filmry.io'),
@@ -77,7 +76,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <StructuredData />
         <AnalyticsProvider />
         {children}
       </body>
