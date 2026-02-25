@@ -6,9 +6,26 @@ import StructuredData from '@/components/StructuredData'
 export const metadata: Metadata = {
   metadataBase: new URL('https://filmry.io'),
 
-  title: 'Filmry — Make films. Not chaos.',
+  title: {
+    default: 'Filmry — Make films. Not chaos.',
+    template: '%s | Filmry',
+  },
+
   description:
     'Filmry is the end-to-end platform for modern film production — from script to delivery.',
+
+  keywords: [
+    'film production platform',
+    'filmmaking software',
+    'film production tools',
+    'film workflow',
+    'Filmry',
+    'cinema production software',
+  ],
+
+  authors: [{ name: 'Filmry' }],
+  creator: 'Filmry',
+  publisher: 'Filmry',
 
   alternates: {
     canonical: '/',
@@ -16,33 +33,39 @@ export const metadata: Metadata = {
 
   icons: {
     icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
 
   openGraph: {
+    type: 'website',
+    url: 'https://filmry.io',
     title: 'Filmry — Make films. Not chaos.',
     description:
-      'The end-to-end platform for modern film production.',
-    url: 'https://filmry.io',
+      'The end-to-end platform for modern film production — from script to delivery.',
     siteName: 'Filmry',
     images: [
       {
-        url: '/og.jpg',
+        url: '/og-v2.png',
         width: 1200,
         height: 630,
-        alt: 'Filmry',
+        alt: 'Filmry — Make films. Not chaos.',
       },
     ],
-    locale: 'en_GB',
-    type: 'website',
   },
 
   twitter: {
     card: 'summary_large_image',
-    title: 'Filmry',
+    title: 'Filmry — Make films. Not chaos.',
     description:
-      'End-to-end platform for modern film production.',
-    images: ['/og.jpg'],
+      'The end-to-end platform for modern film production.',
+    images: ['/og-v2.png'],
+    creator: '@filmryio',
+  },
+
+  robots: {
+    index: true,
+    follow: true,
   },
 }
 
