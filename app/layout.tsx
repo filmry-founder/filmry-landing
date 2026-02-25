@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description:
     'Filmry is the end-to-end platform for modern film production — from script to delivery.',
   metadataBase: new URL('https://filmry.io'),
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',

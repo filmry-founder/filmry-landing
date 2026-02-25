@@ -5,6 +5,7 @@ import WaitlistSection from '@/components/WaitlistSection'
 import CinematicSection from '@/components/CinematicSection'
 import Reveal from '@/components/Reveal'
 import VideoBackground from '@/components/VideoBackground'
+import StructuredData from '@/components/StructuredData'
 
 const ROLES = [
   'Director',
@@ -51,6 +52,7 @@ export default function Home() {
       <Header variant="transparent" />
 
       <main className="relative z-10">
+        <StructuredData />
         {/* Hero */}
         <section
           className="relative overflow-hidden pt-24 pb-20 sm:pt-32 sm:pb-28"
