@@ -7,7 +7,8 @@ const jsonLd = {
       '@type': 'Organization',
       name: 'Filmry',
       url: 'https://filmry.io',
-      logo: 'https://filmry.io/logo/filmry-logo-white.png',
+      logo: 'https://filmry.io/logo.png',
+      image: 'https://filmry.io/logo.png',
       sameAs: [
         'https://x.com/filmryio',
         'https://instagram.com/filmryio',
@@ -15,6 +16,7 @@ const jsonLd = {
         'https://www.facebook.com/filmryio',
         'https://www.tiktok.com/@filmryio',
         'https://youtube.com/@filmryio',
+        'https://linkedin.com/company/filmry',
       ],
     },
     {
