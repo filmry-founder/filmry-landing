@@ -129,12 +129,18 @@ export default function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      href="/cookies"
-                      className="text-gray-400 transition-colors hover:text-gray-100"
-                    >
-                      Cookie preferences
-                    </Link>
+                  <Link
+                    href="/cookies"
+                    onClick={(event) => {
+                      if (typeof window !== 'undefined') {
+                        event.preventDefault()
+                        window.dispatchEvent(new Event('filmry:open-cookie-preferences'))
+                      }
+                    }}
+                    className="text-gray-400 transition-colors hover:text-gray-100"
+                  >
+                    Cookie preferences
+                  </Link>
                   </li>
                   <li>
                     <Link

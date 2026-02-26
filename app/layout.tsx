@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import AnalyticsProvider from '@/components/AnalyticsProvider'
+import CookieConsentProvider from '@/components/cookies/CookieConsentProvider'
+import CookieBanner from '@/components/cookies/CookieBanner'
+import CookiePreferencesModal from '@/components/cookies/CookiePreferencesModal'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://filmry.io'),
@@ -76,8 +79,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <AnalyticsProvider />
-        {children}
+        <CookieConsentProvider>
+          <AnalyticsProvider />
+          {children}
+          <CookieBanner />
+          <CookiePreferencesModal />
+        </CookieConsentProvider>
       </body>
     </html>
   )
