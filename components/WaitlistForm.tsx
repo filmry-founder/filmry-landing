@@ -289,13 +289,13 @@ const inputBaseDark =
 const inputBaseLight =
   'w-full border-b border-gray-300 bg-transparent px-0 py-3 text-base placeholder-gray-400 focus:border-black focus:outline-none disabled:opacity-50'
 const btnPrimaryDark =
-  'w-full border border-white bg-white px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0a0a0a] disabled:cursor-not-allowed disabled:opacity-50'
+  'w-full border border-white bg-white px-6 py-3 text-sm font-medium text-black rounded-[12px] transition-colors hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0a0a0a] disabled:cursor-not-allowed disabled:opacity-50'
 const btnPrimaryLight =
-  'w-full border border-black bg-black px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+  'w-full border border-black bg-black px-6 py-3 text-sm font-medium text-white rounded-[12px] transition-colors hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
 const btnSecondaryDark =
-  'px-6 py-3 text-sm font-medium text-gray-400 transition-colors hover:text-white focus:outline-none disabled:opacity-50'
+  'px-6 py-3 text-sm font-medium text-gray-400 rounded-[12px] transition-colors hover:text-white focus:outline-none disabled:opacity-50'
 const btnSecondaryLight =
-  'px-6 py-3 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 focus:outline-none disabled:opacity-50'
+  'px-6 py-3 text-sm font-medium text-gray-600 rounded-[12px] transition-colors hover:text-gray-900 focus:outline-none disabled:opacity-50'
 
 export default function WaitlistForm({
   variant = 'light',

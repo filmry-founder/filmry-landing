@@ -57,6 +57,7 @@ export default function Home() {
           className="relative overflow-hidden pt-24 pb-20 sm:pt-32 sm:pb-28"
           style={{
             boxShadow: '0 8px 32px -8px rgba(0,0,0,0.18)',
+            background: '#000000',
           }}
         >
           {/* Soft radial light — studio spotlight (behind video, max opacity so video visible) */}
@@ -74,13 +75,14 @@ export default function Home() {
               Final: opacity 0.14-0.18, brightness(0.75-0.85) contrast(1.08-1.15) */}
           <VideoBackground
             id="hero-video"
-            src="/images/hero-bg-v3.mp4"
+            src="/images/hero-bg-v4.mp4"
             opacity={0.38}
             filter="brightness(0.8) contrast(1.1)"
             objectFit="cover"
             preload="metadata"
             zIndex={0}
             hueCycleStages={[0, 10, -8, 16, -12]}
+            videoClassName="hero-video-mask"
           />
           {/* Bottom fade overlay — curved mask, blends hero video into next section */}
           <div
