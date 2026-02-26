@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Reveal from '@/components/Reveal'
+import OpenCookiePreferencesLink from '@/components/cookies/OpenCookiePreferencesLink'
 
 export default function Footer() {
   return (
@@ -129,18 +130,7 @@ export default function Footer() {
                     </Link>
                   </li>
                   <li>
-                  <Link
-                    href="/cookies"
-                    onClick={(event) => {
-                      if (typeof window !== 'undefined') {
-                        event.preventDefault()
-                        window.dispatchEvent(new Event('filmry:open-cookie-preferences'))
-                      }
-                    }}
-                    className="text-gray-400 transition-colors hover:text-gray-100"
-                  >
-                    Cookie preferences
-                  </Link>
+                    <OpenCookiePreferencesLink className="text-gray-400 transition-colors hover:text-gray-100" />
                   </li>
                   <li>
                     <Link
