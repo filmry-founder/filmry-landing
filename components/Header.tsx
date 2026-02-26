@@ -15,9 +15,10 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
         <HeaderLogoLink />
         <a
           href="/#waitlist"
-          className="btn-cinematic btn-early-access shrink-0 whitespace-nowrap rounded-[12px] px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out max-sm:px-3 max-sm:py-2"
+          className="btn-cinematic btn-early-access shrink-0 whitespace-nowrap px-5 py-2.5 text-sm transition-all duration-250 max-sm:px-3 max-sm:py-2"
         >
-          Join early access
+          <span className="btn-early-access__inner" aria-hidden="true" />
+          <span>Join early access</span>
         </a>
       </nav>
     </header>
