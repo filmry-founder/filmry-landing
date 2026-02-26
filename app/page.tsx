@@ -1,11 +1,10 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import Header from '@/components/Header'
 import WaitlistSection from '@/components/WaitlistSection'
 import CinematicSection from '@/components/CinematicSection'
 import Reveal from '@/components/Reveal'
 import VideoBackground from '@/components/VideoBackground'
 import StructuredData from '@/components/StructuredData'
+import Footer from '@/components/Footer'
 
 const ROLES = [
   'Director',
@@ -221,47 +220,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="relative z-10 border-t border-white/[0.06] py-20">
-          <Reveal variant="fadeUp">
-            <div className="page-container flex flex-col items-center justify-center text-center">
-              <Image
-              src="/logo/filmry-logo-white.png"
-              alt="Filmry"
-              width={90}
-              height={30}
-              className="mb-6 h-7 w-[90px] object-contain opacity-70"
-            />
-            <p className="mt-2 text-xs text-gray-500">
-              A product of Mavren Studios Ltd
-            </p>
-            <p className="mt-1 text-xs text-gray-600">Manchester, United Kingdom</p>
-            <div className="mt-8 flex gap-8">
-              <Link
-                href="/privacy"
-                className="text-xs text-gray-500 transition-colors hover:text-gray-400"
-              >
-                Privacy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-xs text-gray-500 transition-colors hover:text-gray-400"
-              >
-                Terms
-              </Link>
-              <Link
-                href="/contact"
-                className="text-xs text-gray-500 transition-colors hover:text-gray-400"
-              >
-                Contact
-              </Link>
-            </div>
-            <p className="mt-8 text-xs text-gray-600">
-              © {new Date().getFullYear()} Filmry. All rights reserved.
-            </p>
-            </div>
-          </Reveal>
-        </footer>
+        <Footer />
       </main>
     </div>
   )
