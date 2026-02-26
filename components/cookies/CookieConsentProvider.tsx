@@ -15,6 +15,7 @@ type CookieConsentContextValue = {
   isPreferencesOpen: boolean
   openPreferences: () => void
   closePreferences: () => void
+  dismissBanner: () => void
 }
 
 const CookieConsentContext = createContext<CookieConsentContextValue | undefined>(undefined)
@@ -95,6 +96,10 @@ export default function CookieConsentProvider({ children }: Props) {
     setIsPreferencesOpen(false)
   }
 
+  const dismissBanner = () => {
+    setIsBannerOpen(false)
+  }
+
   const value = useMemo<CookieConsentContextValue>(
     () => ({
       consent,
@@ -103,6 +108,7 @@ export default function CookieConsentProvider({ children }: Props) {
       isPreferencesOpen,
       openPreferences,
       closePreferences,
+      dismissBanner,
     }),
     [consent, isBannerOpen, isPreferencesOpen]
   )

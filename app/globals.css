@@ -496,3 +496,31 @@ input:-internal-autofill-selected {
   box-shadow: 0 0 0 1000px #0a0a0a inset !important;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+/* -------------------------------------------------------------------------
+   Cookie banner — subtle fade + slide up on first appearance
+   ------------------------------------------------------------------------- */
+.cookie-banner-enter {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: cookieBannerEnter 260ms var(--motion-ease-out) forwards;
+}
+
+@keyframes cookieBannerEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-banner-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
